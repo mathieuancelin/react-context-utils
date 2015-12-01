@@ -10,15 +10,20 @@ export default React.createClass({
   childContextTypes: {
     __providedContext: React.PropTypes.object,
   },
+  contextTypes: {
+    __providedContext: React.PropTypes.object,
+  },
   getDefaultProps() {
     return {
       ctxName: 'default',
     };
   },
   getChildContext() {
+    const parentContext = this.context.__providedContext || {};
     const ctxName = this.props.ctxName;
     return {
       __providedContext: {
+        ...parentContext,
         [ctxName]: this.props.context,
       },
     };

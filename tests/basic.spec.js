@@ -6,6 +6,8 @@ import ReactTestUtils from 'react-addons-test-utils';
 
 import ContextProvider from '../src/ContextProvider';
 import HelloComponent from './hello';
+import SecondaryHelloComponent from './secondaryhello';
+import AnotherHelloComponent from './anotherhello';
 
 describe('App', () => {
   it('should be aware of context', () => {
@@ -52,6 +54,82 @@ describe('App', () => {
     const span = ReactTestUtils.findRenderedDOMComponentWithTag(app, 'span');
     expect(span.textContent).to.be.equal('Hello Dude!');
   });
+
+  it('should support multiple contexts', () => {
+    const context = {
+      helloService: (who = 'World') => `Hello ${who}!`,
+    };
+    const secondaryContext = {
+      uppercaseService: (value) => value.toUpperCase(),
+    };
+    const Component = React.createClass({
+      propTypes: {
+        children: React.PropTypes.element.isRequired,
+      },
+      render() {
+        return (
+          <ContextProvider context={secondaryContext} ctxName="secondary">
+            {this.props.children}
+          </ContextProvider>
+        );
+      },
+    });
+    const App = React.createClass({
+      render() {
+        return (
+          <h1>
+            <Component>
+              <div>
+                <HelloComponent who="Dude" />
+                <SecondaryHelloComponent message="Hello World!" />
+              </div>
+            </Component>
+          </h1>
+        );
+      },
+    });
+    const app = ReactTestUtils.renderIntoDocument(<ContextProvider context={context}><App /></ContextProvider>);
+    const span = ReactTestUtils.findRenderedDOMComponentWithTag(app, 'span');
+    const p = ReactTestUtils.findRenderedDOMComponentWithTag(app, 'p');
+    expect(span.textContent).to.be.equal('Hello Dude!');
+    expect(p.textContent).to.be.equal('HELLO WORLD!');
+  });
+
+  it('should support multiple contexts at once', () => {
+    const context = {
+      helloService: (who = 'World') => `Hello ${who}!`,
+    };
+    const secondaryContext = {
+      uppercaseService: (value) => value.toUpperCase(),
+    };
+    const Component = React.createClass({
+      propTypes: {
+        children: React.PropTypes.element.isRequired,
+      },
+      render() {
+        return (
+          <ContextProvider context={secondaryContext} ctxName="secondary">
+            {this.props.children}
+          </ContextProvider>
+        );
+      },
+    });
+    const App = React.createClass({
+      render() {
+        return (
+          <h1>
+            <Component>
+              <AnotherHelloComponent who="Dude" />
+            </Component>
+          </h1>
+        );
+      },
+    });
+    const app = ReactTestUtils.renderIntoDocument(<ContextProvider context={context}><App /></ContextProvider>);
+    const span = ReactTestUtils.findRenderedDOMComponentWithTag(app, 'span');
+    expect(span.textContent).to.be.equal('HELLO DUDE!');
+  });
+
   it('should handle props updates', () => {
     const context = {
       helloService: (who = 'World') => `Hello ${who}!`,
