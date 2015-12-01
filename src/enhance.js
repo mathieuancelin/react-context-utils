@@ -1,3 +1,4 @@
+/* eslint react/no-multi-comp: 0 */
 import React from 'react';
 
 // creates an higher order component that can map parts of the context on subcomponent props
@@ -11,8 +12,10 @@ export default function enhance(mapper = a => a, name = 'default') {
         render() {
           let props = {...this.props};
           for (const item in mapper) {
-            const value = mapper[item];
-            props = {...props, ...value.mapper(this.context.__providedContext[value.name])}
+            if ({}.hasOwnProperty.call(mapper, item)) {
+              const value = mapper[item];
+              props = {...props, ...value.mapper(this.context.__providedContext[value.name])};
+            }
           }
           return <Component {...props} />;
         },

@@ -7,10 +7,10 @@ export default React.createClass({
     children: React.PropTypes.element.isRequired,
     context: React.PropTypes.object.isRequired,
   },
-  childContextTypes: {
+  contextTypes: {
     __providedContext: React.PropTypes.object,
   },
-  contextTypes: {
+  childContextTypes: {
     __providedContext: React.PropTypes.object,
   },
   getDefaultProps() {
