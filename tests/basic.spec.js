@@ -9,7 +9,7 @@ import HelloComponent from './hello';
 import SecondaryHelloComponent from './secondaryhello';
 import AnotherHelloComponent from './anotherhello';
 
-describe('App', () => {
+describe('react-context-utils', () => {
   it('should be aware of context', () => {
     const context = {
       helloService: (who = 'World') => `Hello ${who}!`,

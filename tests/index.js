@@ -6,4 +6,5 @@ Bootstrap.setupEnv();
 
 const tests = [
   require('./basic.spec.js'),
+  require('./eventbus.spec.js'),
 ];
