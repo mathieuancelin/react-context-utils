@@ -104,5 +104,122 @@ ReactDOM.render(
 );
 ```
 
+## Multiple contexts
+
+It is possible to deeply nest contexts with different names
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { ContextProvider, mapContextWith } from 'react-context-utils';
+
+const contextA = { ... };
+const contextB = { ... };
+
+const Component = mapContextWith(c => ({ ... }), 'B')(...);
+const OtherComponent = mapContextWith(c => ({ ... }), 'A')(...);
+
+const App = React.createClass({
+  render() {
+    <ContextProvider context={contextA} ctxName="A">
+      <div>
+        <ContextProvider context={contextB} ctxName="B">
+          <Component />
+        </ContextProvider>
+        <AnotherComponent />
+        <OtherComponent />
+      </div>
+    </ContextProvider>
+  }
+});
+
+ReactDOM.render(<App />, document.getElementById('app'));
+```
+
+you can also consume multiple contexts in one component by using
+
+```javascript
+import { mapContextWith } from 'react-context-utils';
+
+const Component = React.createClass(...);
+
+export default mapContextWith([
+  { mapper: c => c, name: 'default' },
+  { mapper: c => c, name: 'secondary' },
+])(Component);
+```
+
+## Out of the box event bus
+
+`react-context-utils` provides a simple event bus for the wrapped component tree.
+
+It's pretty easy to use
+
+```javascript
+import React from 'react';
+
+import {
+  ContextProvider,
+  EventBusShape,
+  mapContextWith
+} from 'react-context-utils';
+
+const Emitter = mapContextWith()(React.createClass({
+  propTypes: {
+    eventBus: EventBusShape,
+  },
+  emit() {
+    this.props.eventBus.dispatch('events', 'Hello World');
+  },
+  render() {
+    return (
+      <button type="button" onClick={this.emit}>Emit</button>
+    );
+  },
+}));
+
+const Receiver = mapContextWith()(React.createClass({
+  propTypes: {
+    eventBus: EventBusShape,
+  },
+  getInitialState() {
+    return {
+      message: 'void',
+    };
+  },
+  componentDidMount() {
+    this.unsubscribe = this.props.eventBus.subscribe('events', payload => this.setState({ message: payload }));
+  },
+  componentWillUnmout() {
+    this.unsubscribe();
+  },
+  render() {
+    return (
+      <div>
+        <span>{this.state.message}</span>
+      </div>
+    );
+  },
+}));
+
+const App = React.createClass({
+  render() {
+    return (
+      <div>
+        <Emitter />
+        <Receiver />
+      </div>
+    );
+  },
+});
+
+ReactDOM.render(
+  <ContextProvider context={context}>
+    <App />
+  </ContextProvider>
+  , document.getElementById('app')
+);
+```
+
 [1]: https://api.travis-ci.org/mathieuancelin/react-context-utils.svg
 [2]: https://api.travis-ci.org/mathieuancelin/react-context-utils
