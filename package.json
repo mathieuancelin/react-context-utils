@@ -1,6 +1,6 @@
 {
   "name": "react-context-utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple component and decorator to provide contexts to React components",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.js",
@@ -13,6 +13,13 @@
   },
   "author": "Mathieu ANCELIN",
   "license": "MIT",
+  "keywords": [
+    "react",
+    "context",
+    "utils",
+    "DI",
+    "higher order component"
+  ],
   "dependencies": {
     "react": "^0.14.3"
   },

@@ -6,12 +6,13 @@ import ReactTestUtils from 'react-addons-test-utils';
 
 import ContextProvider from '../src/ContextProvider';
 import mapContextWith from '../src/enhance';
+import EventBusShape from '../src/eventBusShape';
 
 describe('react-context-utils', () => {
   it('should provide an eventBus', () => {
     const Emitter = mapContextWith()(React.createClass({
       propTypes: {
-        eventBus: React.PropTypes.object,
+        eventBus: EventBusShape,
       },
       emit() {
         this.props.eventBus.dispatch('events', 'Hello World');
@@ -25,7 +26,7 @@ describe('react-context-utils', () => {
 
     const Receiver = mapContextWith()(React.createClass({
       propTypes: {
-        eventBus: React.PropTypes.object,
+        eventBus: EventBusShape,
       },
       getInitialState() {
         return {
