@@ -21,6 +21,10 @@ export default React.createClass({
   getChildContext() {
     const parentContext = this.context.__providedContext || {};
     const ctxName = this.props.ctxName;
+    if (parentContext[ctxName]) {
+      console.warn(`You are providing a '${ctxName}' while a parent context with the same name is already defined.` +
+      `It will be overidden by this one.`);
+    }
     return {
       __providedContext: {
         ...parentContext,
