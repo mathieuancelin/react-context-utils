@@ -1,6 +1,6 @@
 {
   "name": "react-context-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple component and decorator to provide contexts to React components",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.js",
