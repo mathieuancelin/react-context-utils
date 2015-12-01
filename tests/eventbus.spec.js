@@ -8,10 +8,11 @@ import ContextProvider from '../src/ContextProvider';
 import mapContextWith from '../src/enhance';
 
 describe('react-context-utils', () => {
-
   it('should provide an eventBus', () => {
-
     const Emitter = mapContextWith()(React.createClass({
+      propTypes: {
+        eventBus: React.PropTypes.object,
+      },
       emit() {
         this.props.eventBus.dispatch('events', 'Hello World');
       },
@@ -19,10 +20,13 @@ describe('react-context-utils', () => {
         return (
           <button type="button" onClick={this.emit}>Emit</button>
         );
-      }
+      },
     }));
 
     const Receiver = mapContextWith()(React.createClass({
+      propTypes: {
+        eventBus: React.PropTypes.object,
+      },
       getInitialState() {
         return {
           message: 'void',
@@ -44,7 +48,7 @@ describe('react-context-utils', () => {
             <p>{this.state.messageall}</p>
           </div>
         );
-      }
+      },
     }));
 
     const App = React.createClass({

@@ -10,7 +10,7 @@ function EventBus() {
     }
     listeners.push(slug);
     return () => {
-      let index = listeners.indexOf(slug);
+      const index = listeners.indexOf(slug);
       listeners.splice(index, 1);
     };
   }
@@ -22,7 +22,7 @@ function EventBus() {
     }
     slug.callback = (payload) => {
       slug.originalCallback(payload);
-      let index = listeners.indexOf(slug);
+      const index = listeners.indexOf(slug);
       listeners.splice(index, 1);
     };
     listeners.push(slug);
@@ -32,7 +32,7 @@ function EventBus() {
     const ctx = { topic, payload };
     if (!payload) {
       ctx.payload = topic;
-      ct.topic = '*';
+      ctx.topic = '*';
     }
     listeners.forEach(slug => {
       if (slug.topic === '*') {
@@ -51,7 +51,7 @@ function EventBus() {
     subscribe,
     subscribeOnce,
     dispatch,
-    dispatchAsync
+    dispatchAsync,
   };
 }
 
@@ -75,7 +75,7 @@ export default React.createClass({
   },
   getChildContext() {
     const parentContext = this.context.__providedContext || {};
-    const eventBus = parentContext.__eventBus || EventBus();
+    const eventBus = parentContext.__eventBus || EventBus(); // eslint-disable-line
     const ctxName = this.props.ctxName;
     if (parentContext[ctxName]) {
       console.warn(`You are providing a '${ctxName}' while a parent context with the same name is already defined.` +
