@@ -10,11 +10,11 @@ export default function enhance(mapper = a => a, name = 'default') {
           __providedContext: React.PropTypes.object,
         },
         render() {
-          let props = {...this.props};
+          let props = { ...this.props };
           for (const item in mapper) {
             if ({}.hasOwnProperty.call(mapper, item)) {
               const value = mapper[item];
-              props = {...props, ...value.mapper(this.context.__providedContext[value.name])};
+              props = { ...props, ...value.mapper(this.context.__providedContext[value.name]) };
             }
           }
           return <Component {...props} />;
@@ -29,9 +29,7 @@ export default function enhance(mapper = a => a, name = 'default') {
       },
       render() {
         return (
-          <Component
-            {...this.props}
-            {...mapper(this.context.__providedContext[name])} />
+          <Component { ...this.props } { ...mapper(this.context.__providedContext[name]) } />
         );
       },
     });

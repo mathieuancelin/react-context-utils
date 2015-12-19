@@ -30,7 +30,7 @@ export default React.createClass({
     return {
       __providedContext: {
         ...parentContext,
-        [ctxName]: {...this.props.context, eventBus },
+        [ctxName]: { ...this.props.context, eventBus },
         __eventBus: eventBus,
       },
     };

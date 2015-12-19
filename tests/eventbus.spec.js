@@ -1,7 +1,7 @@
 /* eslint no-unused-vars:0, no-undef:0, no-unused-expressions:0, react/no-multi-comp: 0 */
 
 import React from 'react';
-import chai, {expect} from 'chai';
+import chai, { expect } from 'chai';
 import ReactTestUtils from 'react-addons-test-utils';
 
 import ContextProvider from '../src/ContextProvider';
