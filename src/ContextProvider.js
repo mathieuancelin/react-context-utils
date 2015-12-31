@@ -24,8 +24,8 @@ export default React.createClass({
     const eventBus = parentContext.__eventBus || EventBus(); // eslint-disable-line
     const ctxName = this.props.ctxName;
     if (parentContext[ctxName]) {
-      console.warn(`You are providing a '${ctxName}' while a parent context with the same name is already defined.` +
-      `It will be overidden by this one.`);
+      console.warn(`You are providing a '${ctxName}' while a parent context with the same name is already defined.` + // eslint-disable-line
+      `It will be overidden by this one.`); // eslint-disable-line
     }
     return {
       __providedContext: {
