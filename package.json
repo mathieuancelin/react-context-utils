@@ -21,8 +21,8 @@
     "DI",
     "higher order component"
   ],
-  "dependencies": {
-    "react": "^0.14.6"
+  "peerDependencies": {
+    "react": "^0.14.0"
   },
   "devDependencies": {
     "babel": "^6.3.26",
