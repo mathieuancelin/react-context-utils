@@ -3,7 +3,7 @@
   "version": "1.0.3",
   "description": "Simple component and decorator to provide contexts to React components",
   "main": "lib/index.js",
-  "jsnext:main": "lib/index.js",
+  "jsnext:main": "src/index.js",
   "scripts": {
     "lint": "eslint src tests",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register tests/index.js",
