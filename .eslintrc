@@ -5,8 +5,12 @@
     "es6": true,
     "node": true
   },
-  "ecmaFeatures": {
-    "experimentalObjectRestSpread": true
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    },
   },
   "rules": {
     "react/prefer-es6-class": 0,
