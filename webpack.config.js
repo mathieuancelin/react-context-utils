@@ -14,6 +14,7 @@ if (process.env.NODE_ENV === 'dev') {
   plugins.push(new webpack.NoErrorsPlugin());
 } else {
   plugins.push(new webpack.optimize.UglifyJsPlugin({
+    sourceMap: false,
     compressor: {
       screw_ie8: true,
       warnings: false
