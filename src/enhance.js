@@ -26,7 +26,7 @@ export default function enhance(mapper = a => a, name = 'default') {
     },
     render() {
       return (
-        <Component { ...this.props } { ...mapper(this.context.__providedContext[name]) } />
+        <Component {...this.props} {...mapper(this.context.__providedContext[name])} />
       );
     },
   });
