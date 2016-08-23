@@ -20,6 +20,15 @@
     "react/jsx-first-prop-new-line": 0,
     "global-require": 1,
     "no-restricted-syntax": 0,
-    "no-underscore-dangle": 0
+    "no-underscore-dangle": 0,
+    "import/prefer-default-export": 0,
+    "react/jsx-filename-extension": 0,
+    "react/no-render-return-value": 0,
+    "import/no-extraneous-dependencies": 0,
+    "react/require-extension": 0,
+    "no-prototype-builtins": 0,
+    "no-continue": 0,
+    "import/imports-first": 1,
+    "operator-assignment": 0
   }
 }
