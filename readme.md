@@ -11,7 +11,7 @@ npm install react-context-utils
 or
 
 ```html
-<script src="https://npmcdn.com/react-context-utils/dist/react-context-utils.js"></script>
+<script src="https://unpkg.com/react-context-utils/dist/react-context-utils.js"></script>
 ```
 
 ## Provide a context
