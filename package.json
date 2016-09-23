@@ -12,6 +12,10 @@
     "lib": "babel src --out-dir lib",
     "build": "npm run test && npm run lint && npm run lib && npm run bundle"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mathieuancelin/react-context-utils.git"
+  },
   "author": "Mathieu ANCELIN",
   "license": "MIT",
   "keywords": [
